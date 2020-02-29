@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name ="viewport" content ="width=device-width", initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!--Jumbotron-->
+    <div class="container-fluid">   
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">Mission To Mars</h1>
+                <p class="lead text-center">Aggregating information about the red planet from a variety of sources.</p>
+                <hr class="my-4">
+                <p class="lead text-center">
+                    <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Data</a>
+                </p>
+            </div>    
+        </div>
+    </div>
+    
+    <div class="container">
+        <!--Mars News-->
+        <div class="row" id="mars-news">
+            <div class="panel panel-default">
+                <h2>Current Mars News</h2>
+                    <h3>{{mars_info.article_title}}</h3> 
+                    <p>{{mars_info.article_text}}</p>
+            </div>              
+        </div>
+
+        <!--Mars Weather-->
+        <div class="row" id="mars-weather">
+            <div class="col-lg-5" id="mars-image">
+                <h2>Featured Mars Image</h2>
+                    <img src={{mars_info.featured_image_url}}>
+            </div>
+            <div class="col-lg-4" id="mars-facts">{{mars_info.facts | safe}}</div>
+        </div>
+        
+        <!--Mars Hemispheres-->
+        <div class="row" id="hemispheres">
+                <div class="col-lg-12" style="border:2px solid #cecece;">
+                    <h2>Mars Hemispheres</h2>
+                        {% for hemisphere in hemispheres %}
+                        <div class="col-lg-6">
+                            <a href={{mars_info.hemis_dict[img_url]}} alt={{mars_info.hemis_dict[title]}}></a>
+                        </div>
+                        {% endfor %}
+                </div>
+        </div>
+    </div>    
+</body>
+</html>
