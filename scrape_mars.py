@@ -58,12 +58,19 @@ def scrape():
     full_img = browser.find_by_id('full_image')
     full_img.click()
 
+    #Click 'More Info' button
+    browser.is_element_present_by_text("more info", wait_time=1)
+    more_info = browser.find_link_by_partial_text("more info")
+    more_info.click()
+
     #Get image link
-    image_url = soup.footer.a["data-link"]
-    image_url
+    image_url = browser.find_by_tag('img')[6]['src']
+    print(image_url)
     
-    featured_image_url = "https://www.jpl.nasa.gov" + str(image_url)
-    mars_info["featured_image_url"] = featured_image_url
+    #featured_image_url = "https://www.jpl.nasa.gov" + str(image_url)
+    mars_info["featured_image_url"] = image_url
+    #or featured_image_url
+   
 
     #Get Mars Weather
     url = 'https://twitter.com/marswxreport?lang=en'
